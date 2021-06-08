@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-06-01 17:09:34
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-06-07 22:56:46
+ * @LastEditTime: 2021-06-08 14:42:55
  * @Description: RxJS
 -->
 # RxJS
@@ -10,6 +10,10 @@
 [RxJS](https://github.com/ReactiveX/RxJS)
 [RxJS 7 中文开发文档](https://github.com/zlq4863947/rxjs-cn)
 [RxJS优秀翻译文章](https://github.com/RxJS-CN/rxjs-articles-translation)
+[RxJS 学习线路推荐](https://zhuanlan.zhihu.com/p/27877381)
+
+[Ben Lesh](https://link.zhihu.com/?target=https%3A//github.com/benlesh) : RxJS 5 领导者、布道者，常出没于各种公开场合公然宣讲 RxJS
+[André Staltz](https://link.zhihu.com/?target=https%3A//github.com/staltz) : 简称 staltz，RxJS 5 核心贡献者、布道者、响应式编程先驱者，RxJS 模范导师
 
 ## 介绍
 

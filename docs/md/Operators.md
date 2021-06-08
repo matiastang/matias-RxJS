@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-06-07 21:34:56
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-06-08 11:52:32
+ * @LastEditTime: 2021-06-08 16:00:36
  * @Description: Operators
 -->
 # Operators
@@ -150,6 +150,9 @@ shareReplay() 的行为类似于 publishReplay().refCount()，在对两者进行
 #### first
 
 取第一个数然后结束，和take(1)效果一样
+first(): 发出首个值和完成通知。
+
+first(predicate): 根据断言函数检查每个值，如果函数返回 `true`，则发出值和完成通知。
 
 #### last
 
@@ -207,6 +210,10 @@ source.subscribe({
 // 3
 // complete 当点击body
 ```
+
+#### takeWhile
+
+takeWhile(predicate): 通过断言函数来测试发出的值，如果一旦函数返回 `false`，则完成 observable 。
 
 #### skip
 
@@ -375,3 +382,6 @@ example.subscribe({
 #### windowToggle
 
 windowToggle相对于widnow多了一个参数为回调函数，用来标志结束条件
+
+## 自定义操作符
+

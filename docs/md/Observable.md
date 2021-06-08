@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-06-07 17:45:23
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-06-08 11:20:19
+ * @LastEditTime: 2021-06-08 14:21:56
  * @Description: Observable
 -->
 # Observable
@@ -73,9 +73,9 @@ observer b: complete
 此示例可以作为 RxJS 多播的基本心智模型: 一个源 observable，一个订阅源 observable 的 subject 和多个订阅 subject 的观察者。
 
 ## multicast 操作符和 ConnectableObservable
-RxJS 引入了 multicast 操作符，它可以应用于 observable ，使其变成热的。此操作符封装了 subject 用于多播 observable 时所涉及的基础结构。
 
-在看 `multicast` 操作符之前，我们使用一个简单实现的 multicast 函数来替代上面示例中的 subject :
+`RxJS` 引入了 `multicast` 操作符，它可以应用于 `observable` ，使其变成`热`的。此操作符封装了 `subject` 用于多播 `observable` 时所涉及的基础结构。
+在看 `multicast` 操作符之前，我们使用一个简单实现的 `multicast` 函数来替代上面示例中的 `subject` :
 
 function multicast<T>(source: Observable<T>) {
   const subject = new Subject<T>();
@@ -92,9 +92,9 @@ observer a: complete
 observer b: complete
 这并不是我们想要的结果。在函数内部订阅 subject 使得 subject 在被观察者订阅之前就已经收到了 next 和 complete 通知，所以观察者只能收到 complete 通知。
 
-这是可避免的，任何连接多播基础结构的函数的调用者需要能够在 subject 订阅源 observable 时进行控制。RxJS 的 multicast 操作符通过返回一个特殊的 `observable` 类型 `ConnectableObservable` 来实现的。
+这是可避免的，任何连接多播基础结构的函数的调用者需要能够在 `subject` 订阅源 `observable` 时进行控制。`RxJS` 的 `multicast` 操作符通过返回一个特殊的 `observable` 类型 `ConnectableObservable` 来实现的。
 
-`ConnectableObservable` 封装了多播的基础结构，但它不会立即订阅源 observable ，只有当它的 `connect` 方法调用时，它才会订阅源 `observable` 。
+`ConnectableObservable` 封装了多播的基础结构，但它不会立即订阅源 `observable` ，只有当它的 `connect` 方法调用时，它才会订阅源 `observable` 。
 
 我们来使用 multicast 操作符:
 
@@ -125,13 +125,13 @@ observer a: 54
 observer b: 54
 observer a: complete
 observer b: complete
-调用 connect 时，传入 multicast 操作符的 subject 会订阅源 observable，而 subject 的观察者会收到多播通知，这正符合 RxJS 多播的基本心智模型。
+调用 `connect` 时，传入 `multicast` 操作符的 `subject` 会订阅源 `observable`，而 `subject` 的观察者会收到多播通知，这正符合 `RxJS` 多播的基本心智模型。
 
 `ConnectableObservable` 还有另外一个方法 `refCount`，它可以用来确定源 `observable` 何时产生了订阅。
 
 `refCount` 看上去就像是操作符，也就是说，它是在 `observable` 上调用的方法并且返回另一个 `observable`，但是它只是 `ConnectableObservable` 的方法而且不需要导入。顾名思义，`refCount` 返回 `observable`， 它负责维护已产生的订阅的引用计数。
 
-当观察者订阅负责引用计数的 observable 时，引用计数会增加，如果前一个引用计数为0的话，负责多播基础结构的 subject 会订阅源 observable 。当观察者取消订阅时，引用计数会减少，如果引用计数归零的话，subject 会取消对源 observable 的订阅。
+当`观察者``订阅`负责引用计数的 `observable` 时，引用计数会增加，如果前一个引用计数为`0`的话，负责多播基础结构的 `subject` 会订阅源 `observable` 。当观察者取消订阅时，引用计数会减少，如果引用计数归零的话，`subject` 会取消对源 `observable` 的订阅。
 
 我们来使用 refCount :
 
@@ -145,11 +145,11 @@ observer a: complete
 observer b: complete
 只有第一个观察者收到了 next 通知。我们来看看原因。
 
-示例中的源 observable 会立即发出通知。也就是说，一旦订阅了，源 observable 就会发出 next 和 complete 通知，complete 通知导致在第二个观察者订阅之前第一个就取消了订阅。当第一个取消订阅时，引用计数会归零，所以负责多播基础结构的 subject 也会取消源 observable 的订阅。
+示例中的源 `observable` 会立即发出通知。也就是说，一旦订阅了，源 `observable` 就会发出 `next` 和 `complete` 通知，`complete` 通知导致在第二个观察者订阅之前第一个就取消了订阅。当第一个取消订阅时，引用计数会归零，所以负责多播基础结构的 `subject` 也会取消源 `observable` 的订阅。
 
-当第二个观察者订阅时，subject 会再次订阅源 observable，但由于 subject 已经收到了 complete 通知，所以它无法被重用。
+当第二个观察者订阅时，`subject` 会再次订阅源 `observable`，但由于 `subject` 已经收到了 `complete` 通知，所以它无法被重用。
 
-向 multicast 传入 subject 的工厂函数可以解决此问题:
+向 `multicast` 传入 `subject` 的工厂函数可以解决此问题:
 
 const m = source.multicast(() => new Subject<number>()).refCount();
 m.subscribe(observer("a"));
@@ -184,7 +184,8 @@ observer b: complete
 * 封装了`多播`的基础结构以符合多播的心智模型；
 * 提供了 `connect` 方法以用于确定源 `observable` 何时产生了订阅；
 * 供了 `refCount` 方法以用于自动管理源 `observable` 的订阅；
-* 如果使用 `refCount`，必须传入 `Subject` 的工厂函数，而不是 `Subject` 实例；
+* 如果使用 `refCount`，必须传入 `Subject` 的工厂函数，而不是 `Subject` 实例
+
 接下来我们来看 `publish` 和 `share` 操作符，以及 `publish` 的变种，看看它们是如何在 `multicast` 操作符所提供的基础之上建立的。
 
 ### publish 操作符
@@ -252,7 +253,7 @@ observer c: complete
 
 b 没有收到第一个 next 通知是因为源 observable 的第一个 next 通知是立即发出的，所以只有 a 能收到。
 
-c 是在调用过 publish 的 observable 完成后订阅的，所以订阅的引用计数已经是0，此时将会再生成一个订阅。但是，publish 传给 multicast 的是 subject，而不是工厂函数，因为 subjects 无法被复用，所以 c 只能收到 complete 通知。
+c 是在调用过 publish 的 observable 完成后订阅的，所以订阅的引用计数已经是0，此时将会再生成一个订阅。但是，`publish` 传给 `multicast` 的是 `subject`，而不是`工厂函数`，因为 `subjects` 无法被复用，所以 c 只能收到 complete 通知。
 
 publish 和 multicast 操作符都接受一个可选的 selector 函数，如果指定了此函数，操作符的行为将会有很大的不同。这将在另一篇文章 multicast 操作符的秘密中详细介绍。
 
@@ -342,7 +343,8 @@ c 是在源 observable 完成后订阅的，它能收到带有第二个随机数
 与 publishReplay 类似，publishLast 操作符适合使用 refCount 方法，因为观察者在源 observable 完成后订阅依然能收到任意数量的重放的 next 通知。
 
 ### share 操作符
-share 操作符类似于使用 publish().refCount() 。但是，share 传给 multicast 的是工厂函数，这意味着在引用计数为0之后发生订阅的话，会创建一个新的 Subject 来订阅源 observable 。
+
+`share` 操作符类似于使用 `publish().refCount()` 。但是，`share` 传给 `multicast` 的是工厂函数，这意味着在引用计数为`0`之后发生订阅的话，会创建一个新的 `Subject` 来订阅源 `observable` 。
 
 const s = source.share();
 s.subscribe(observer("a"));
