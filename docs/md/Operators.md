@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-06-07 21:34:56
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-06-08 16:00:36
+ * @LastEditTime: 2021-06-09 11:21:53
  * @Description: Operators
 -->
 # Operators
@@ -305,6 +305,8 @@ groupBy类似数据库中的group命令一样
 
 协调多个observable，参数Observable中有一个发生变化都会发起订阅（前提是每个observable都有值）。
 当conbineLatest没有传入第二个参数，返回的订阅值是个数组，但是conbineLatest可以传入第二个参数，在发给Observabler进行数据处理。
+
+#### combineLatestWith
 
 #### withLatestFrom
 

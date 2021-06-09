@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-06-07 17:45:23
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-06-08 14:21:56
+ * @LastEditTime: 2021-06-09 15:11:16
  * @Description: Observable
 -->
 # Observable
@@ -11,6 +11,8 @@
 [RxJS核心解析——Observable](https://zhuanlan.zhihu.com/p/38133091)
 
 ## 介绍
+
+![RxJS知识点](./images/RxJS知识点.jpeg)
 
 绝大部分工程其实就是对`数据`和`视图`的处理。目前处理数据的方法可以分为`拉取`和`推送`两种，与其对应的数据处理对象即为`消费者`和`生产者`。
 

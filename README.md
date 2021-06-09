@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-06-01 17:09:34
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-06-08 14:42:55
+ * @LastEditTime: 2021-06-09 14:55:18
  * @Description: RxJS
 -->
 # RxJS
@@ -11,11 +11,17 @@
 [RxJS 7 中文开发文档](https://github.com/zlq4863947/rxjs-cn)
 [RxJS优秀翻译文章](https://github.com/RxJS-CN/rxjs-articles-translation)
 [RxJS 学习线路推荐](https://zhuanlan.zhihu.com/p/27877381)
+[译】RxJS 入门](https://zhuanlan.zhihu.com/p/62098043)
+[RxJS 学习](https://www.zhihu.com/column/learing-rxjs)
+[[译] RxJS 高级缓存](https://zhuanlan.zhihu.com/p/42264563)
+[RxJS 实战篇（一）拖拽](https://zhuanlan.zhihu.com/p/27518034)
 
 [Ben Lesh](https://link.zhihu.com/?target=https%3A//github.com/benlesh) : RxJS 5 领导者、布道者，常出没于各种公开场合公然宣讲 RxJS
 [André Staltz](https://link.zhihu.com/?target=https%3A//github.com/staltz) : 简称 staltz，RxJS 5 核心贡献者、布道者、响应式编程先驱者，RxJS 模范导师
 
 ## 介绍
+
+"everything is a stream"
 
 RxJS 是一个库，它通过使用 observable 序列来编写异步和基于事件的程序。它提供了一个核心类型 Observable，附属类型 (Observer、 Schedulers、 Subjects) 和受 [Array#extras] 启发的操作符 (map、filter、reduce、every, 等等)，这些数组操作符可以把异步事件作为集合来处理。
 

@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-06-07 22:33:14
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-06-08 15:41:24
+ * @LastEditTime: 2021-06-09 10:58:08
  * @Description: file content
  */
 import { Observable, timer, concat, interval } from 'rxjs';
@@ -35,9 +35,6 @@ const takeEveryNth = (n: number) => <T>(source: Observable<T>) => {
         })
     })
 }
-
-interval
-
 
 /**
  * concat

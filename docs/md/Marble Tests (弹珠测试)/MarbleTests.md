@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-06-08 14:41:58
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-06-08 16:36:46
+ * @LastEditTime: 2021-06-09 10:58:28
  * @Description: Marble Tests (弹珠测试)
 -->
 # Marble Tests (弹珠测试)
@@ -96,3 +96,24 @@ Subscription 的弹珠语法与常见的弹珠语法略有不同。它表示随�
 '--^--': 在20帧处发生了订阅，并且订阅没有被取消。
 
 '--^--!-: 在20帧处发生了订阅，在50帧处订阅被取消了
+
+## 基于测试生成 PNG 弹珠图
+
+通常，Jasmine 中的测试用例都是这样写的：it('should do something', function () { /* ... */ }) 。要想时测试用例可以用来生成 PNG 弹珠图，你必须使用 asDiagram(label) 函数，像这样：
+
+it.asDiagram(operatorLabel)('should do something', function () {
+  // ...
+});
+举例来说，对于 zip 操作符，我们可以这样写：
+
+it.asDiagram('zip')('should zip by concatenating', function () {
+  var e1 =    hot('---a---b---|');
+  var e2 =    hot('-----c---d---|');
+  var expected =  '-----x---y---|';
+  var values = { x: 'ac', y: 'bd' };
+
+  var result = e1.zip(e2, function(x, y) { return String(x) + String(y); });
+
+  expectObservable(result).toBe(expected, values);
+});
+然后当运行 npm run tests2png 时，这个测试用例会解析并且在 img/ 文件夹下创建一个 PNG 文件 zip.png (文件名取决于 ${operatorLabel}.png)。
